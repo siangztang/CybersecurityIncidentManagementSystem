@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.ResponseTeamDetailsController">
+   <children>
+      <StackPane fx:id="response_team_info_page" prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <BorderPane layoutX="484.0" layoutY="213.0" prefHeight="720.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <top>
+                        <AnchorPane prefHeight="40.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <AnchorPane layoutY="4.0" prefHeight="40.0" prefWidth="389.0" scaleShape="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="891.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label layoutX="8.0" layoutY="6.0" text="Cybersecurity Incident Management System">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <Label fx:id="unameLabel" layoutX="1143.0" layoutY="7.0" text="ADMIN">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="1056.0" layoutY="7.0" text="Welcome,">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </top>
+                     <left>
+                        <AnchorPane prefHeight="643.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label layoutX="55.0" layoutY="24.0" />
+                              <Line endX="100.0" layoutX="124.0" layoutY="14.0" startX="-100.0" />
+                              <Button id="backBtn" fx:id="backBtn" layoutX="12.0" layoutY="616.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="225.0" text="Back" />
+                              <Label layoutX="60.0" layoutY="28.0" text="Team ID:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="manageResTeamID" layoutX="140.0" layoutY="28.0" text="ABCD">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </left>
+                     <center>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <TabPane layoutX="4.0" layoutY="14.0" prefHeight="650.0" prefWidth="1023.0" tabClosingPolicy="UNAVAILABLE">
+                                <tabs>
+                                  <Tab text="Handle Incident">
+                                    <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                                <TextField fx:id="searchFieldIncident" layoutX="708.0" layoutY="14.0" prefHeight="33.0" prefWidth="301.0" promptText="Search" />
+                                                <TableView fx:id="icdListTable" layoutX="12.0" layoutY="58.0" prefHeight="333.0" prefWidth="1000.0">
+                                                   <columns>
+                                                      <TableColumn fx:id="icdIdCol" editable="false" prefWidth="112.0" resizable="false" text="Incident ID" />
+                                                      <TableColumn fx:id="icdTimestampCol" editable="false" minWidth="0.0" prefWidth="161.0" resizable="false" text="Timestamp" />
+                                                      <TableColumn fx:id="icdDescCol" editable="false" prefWidth="341.0" resizable="false" text="Description" />
+                                                      <TableColumn fx:id="icdSecLvlCol" editable="false" prefWidth="130.0" resizable="false" text="Security Level" />
+                                                      <TableColumn fx:id="icdAffectedCol" editable="false" prefWidth="154.0" resizable="false" text="Affected System" />
+                                                      <TableColumn fx:id="icdStatusCol" editable="false" minWidth="0.0" prefWidth="101.0" resizable="false" text="Incident Status" />
+                                                   </columns>
+                                                </TableView>
+                                                <AnchorPane layoutX="12.0" layoutY="407.0" prefHeight="200.0" prefWidth="1000.0">
+                                                   <children>
+                                                      <Label layoutX="14.0" layoutY="8.0" text="Description:">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label layoutX="14.0" layoutY="48.0" text="Security Level:">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="icdDescField" layoutX="178.0" layoutY="8.0" prefHeight="25.0" prefWidth="408.0" />
+                                                      <Label layoutX="16.0" layoutY="88.0" text="Affected System:">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label layoutX="16.0" layoutY="128.0" text="Incident Status:">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <ComboBox fx:id="icdSecLvlComboBox" layoutX="178.0" layoutY="48.0" prefWidth="150.0" />
+                                                      <TextField fx:id="icdAffectedField" layoutX="179.0" layoutY="88.0" prefHeight="25.0" prefWidth="407.0" />
+                                                      <Label layoutX="16.0" layoutY="168.0" text="Assign Department: ">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Button id="updateBtn" fx:id="icdUpdateBtn" layoutX="705.0" layoutY="144.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Update" />
+                                                      <Button id="delBtn" fx:id="icdDeleteBtn" layoutX="796.0" layoutY="144.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Delete" />
+                                                      <Button id="resetBtn" fx:id="icdResetBtn" layoutX="917.0" layoutY="144.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Reset" />
+                                                      <ComboBox fx:id="icdStatusComboBox" layoutX="179.0" layoutY="128.0" prefWidth="150.0" />
+                                                      <Button id="addBtn" fx:id="icdAddBtn" layoutX="613.0" layoutY="144.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Add" />
+                                                      <ComboBox fx:id="icdAssignTeamComboBox" layoutX="178.0" layoutY="168.0" prefWidth="150.0" />
+                                                   </children>
+                                                </AnchorPane>
+                                                <Label layoutX="804.0" layoutY="391.0" text="Double Click Row For More Information.">
+                                                   <font>
+                                                      <Font name="System Italic" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children></AnchorPane>
+                                    </content>
+                                  </Tab>
+                                  <Tab text="Incident Response Team Info">
+                                    <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="547.0" prefWidth="1000.0">
+                                             <children>
+                                                <TableView fx:id="resTeamInfoTable" layoutX="12.0" layoutY="58.0" prefHeight="333.0" prefWidth="1000.0">
+                                                   <columns>
+                                                      <TableColumn fx:id="resTeamMemberCol" editable="false" prefWidth="400.0" resizable="false" text="Members Name" />
+                                                      <TableColumn fx:id="resTeamContactCol" editable="false" minWidth="0.0" prefWidth="300.0" resizable="false" text="Contact Information" />
+                                                      <TableColumn fx:id="resTeamContactCol1" editable="false" minWidth="0.0" prefWidth="300.0" resizable="false" text="Username" />
+                                                   </columns>
+                                                </TableView>
+                                                <AnchorPane layoutX="12.0" layoutY="407.0" prefHeight="200.0" prefWidth="1000.0">
+                                                   <children>
+                                                      <PasswordField fx:id="resTeamPasswordField" layoutX="182.0" layoutY="86.0" prefHeight="25.0" prefWidth="173.0" />
+                                                      <Label layoutX="14.0" layoutY="14.0" text="Member Name: ">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label layoutX="14.0" layoutY="50.0" text="Contact Information: ">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <TextField fx:id="resTeamNameField" layoutX="182.0" layoutY="14.0" prefHeight="25.0" prefWidth="173.0" />
+                                                      <Button id="updateBtn" fx:id="responseTeamInfoUpdateBtn" layoutX="679.0" layoutY="144.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Update" />
+                                                      <Button id="delBtn" fx:id="responseTeamInfoDeleteBtn" layoutX="770.0" layoutY="144.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Delete" />
+                                                      <Button id="resetBtn" fx:id="responseTeamInfoResetBtn" layoutX="917.0" layoutY="144.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Reset" />
+                                                      <Button id="addBtn" fx:id="responseTeamInfoAddBtn" layoutX="587.0" layoutY="144.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Add" />
+                                                      <TextField fx:id="resTeamContactField" layoutX="182.0" layoutY="50.0" prefHeight="25.0" prefWidth="173.0" />
+                                                      <Label layoutX="14.0" layoutY="86.0" text="Username:">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <PasswordField fx:id="resTeamPasswordField1" layoutX="182.0" layoutY="122.0" prefHeight="25.0" prefWidth="173.0" />
+                                                      <Label layoutX="14.0" layoutY="122.0" text="Password:">
+                                                         <font>
+                                                            <Font size="16.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </AnchorPane>
+                                                <TextField fx:id="searchFieldTeamInfo" layoutX="708.0" layoutY="14.0" prefHeight="33.0" prefWidth="301.0" promptText="Search" />
+                                                <Label layoutX="804.0" layoutY="391.0" text="Double Click Row For More Information.">
+                                                   <font>
+                                                      <Font name="System Italic" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </AnchorPane>
+                                    </content>
+                                  </Tab>
+                                </tabs>
+                              </TabPane>
+                           </children>
+                        </AnchorPane>
+                     </center>
+                  </BorderPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+   </children>
+</StackPane>
