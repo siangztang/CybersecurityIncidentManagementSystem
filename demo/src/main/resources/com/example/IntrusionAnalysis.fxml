@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controller.IntrusionAnalysisController">
+   <children>
+      <StackPane fx:id="instrusion_analysis_page" prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <BorderPane layoutX="484.0" layoutY="213.0" prefHeight="720.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <top>
+                        <AnchorPane prefHeight="40.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <AnchorPane layoutY="4.0" prefHeight="40.0" prefWidth="389.0" scaleShape="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="823.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <Label layoutX="8.0" layoutY="6.0" text="Cybersecurity Incident Management System">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                              <Label layoutX="1056.0" layoutY="7.0" text="Welcome,">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="unameLabel" layoutX="1143.0" layoutY="7.0" text="ADMIN">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </top>
+                     <left>
+                        <AnchorPane prefHeight="680.0" prefWidth="250.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label layoutX="29.0" layoutY="25.0" text="Incident ID:" />
+                              <Label layoutX="29.0" layoutY="60.0" text="Timestamp:" />
+                              <TextField fx:id="icdInfoId" disable="true" editable="false" layoutX="93.0" layoutY="21.0" text="CYB20231207" />
+                              <TextField fx:id="icdInfoTimestamp" disable="true" editable="false" layoutX="93.0" layoutY="56.0" text="2023-12-07 14:30:00" />
+                              <Line endX="100.0" layoutX="125.0" layoutY="538.0" startX="-100.0" />
+                              <Button id="icdListBtn" fx:id="icdListBtn" layoutX="13.0" layoutY="616.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="225.0" text="Incident list" />
+                              <Label layoutX="28.0" layoutY="95.0" text="Description:" />
+                              <TextField fx:id="icdInfoDesc" disable="true" editable="false" layoutX="93.0" layoutY="91.0" prefWidth="149.0" text="Malware infection on a critical server" />
+                              <Label layoutX="16.0" layoutY="130.0" text="Security Level:" />
+                              <TextField fx:id="icdInfoSecLvl" disable="true" editable="false" layoutX="93.0" layoutY="126.0" text="High" />
+                              <Label layoutX="2.0" layoutY="165.0" text="Affected System:" />
+                              <TextField fx:id="icdInfoAffected" disable="true" editable="false" layoutX="93.0" layoutY="161.0" text="Server-001" />
+                              <Label layoutX="9.0" layoutY="200.0" text="Incident Status:" />
+                              <TextField fx:id="icdInfoStatus" disable="true" editable="false" layoutX="94.0" layoutY="196.0" text="Open" />
+                              <Line endX="100.0" layoutX="122.0" layoutY="14.0" startX="-100.0" />
+                              <Button id="backBtn" fx:id="backBtn" layoutX="13.0" layoutY="552.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="225.0" text="Back" />
+                           </children>
+                        </AnchorPane>
+                     </left>
+                     <center>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label layoutX="14.0" layoutY="1.0" text="Intrusion Analysis ">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <TableView fx:id="treatmentCourseTable" layoutX="15.0" layoutY="43.0" prefHeight="381.0" prefWidth="1000.0">
+                                <columns>
+                                  <TableColumn fx:id="analysisIdCol" prefWidth="100.0" resizable="false" text="Analysis ID" />
+                                    <TableColumn fx:id="attackVectorCol" minWidth="0.0" prefWidth="185.0" resizable="false" text="Attack Vector" />
+                                    <TableColumn fx:id="attackSignatureCol" minWidth="0.0" prefWidth="220.0" resizable="false" text="Attack Signature" />
+                                    <TableColumn fx:id="compromisedDataCol" minWidth="0.0" prefWidth="200.0" resizable="false" text="Compromised Data" />
+                                    <TableColumn fx:id="analysisDetailsCol" minWidth="0.0" prefWidth="295.0" resizable="false" text="Analysis Details" />
+                                </columns>
+                              </TableView>
+                              <AnchorPane layoutX="15.0" layoutY="432.0" prefHeight="200.0" prefWidth="1000.0">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="8.0" text="Attack Vector:">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="48.0" text="Attack Signature:">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Button id="updateBtn" fx:id="updateBtn" layoutX="679.0" layoutY="144.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Update" />
+                                    <Button id="delBtn" fx:id="deleteBtn" layoutX="770.0" layoutY="144.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Delete" />
+                                    <Button id="resetBtn" fx:id="resetBtn" layoutX="917.0" layoutY="144.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Reset" />
+                                    <Button id="addBtn" fx:id="addBtn" layoutX="587.0" layoutY="144.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Add" />
+                                    <Label layoutX="14.0" layoutY="88.0" text="Compromised Data:">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="128.0" text="Analysis Details:">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextArea fx:id="analysisDetailsField" layoutX="173.0" layoutY="125.0" prefHeight="69.0" prefWidth="390.0" />
+                                    <TextField fx:id="attackVectorField" layoutX="173.0" layoutY="8.0" prefHeight="25.0" prefWidth="390.0" />
+                                    <TextField fx:id="attackSignatureField" layoutX="173.0" layoutY="48.0" prefHeight="25.0" prefWidth="390.0" />
+                                    <TextField fx:id="compromisedDataField" layoutX="173.0" layoutY="88.0" prefHeight="25.0" prefWidth="390.0" />
+                                 </children></AnchorPane>
+                              <Label layoutX="807.0" layoutY="423.0" text="Double Click Row For More Information.">
+                                 <font>
+                                    <Font name="System Italic" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </center>
+                  </BorderPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+   </children>
+</StackPane>
