@@ -1,6 +1,7 @@
 package com.example.CSVRelatedClass;
 
 public class ParameterTypes {
+    public final static Class<?>[] RESPONSE_TEAM_PARAMETER_TYPES = {String.class, String.class, String.class, String.class, String.class};
     public final static Class<?>[] ANALYSIS_PARAMETER_TYPES = {String.class, String.class, String.class};
     public final static Class<?>[] BIO_BLOOD_ANALYSIS_PARAMETER_TYPES = {double.class, int.class, double.class, double.class, int.class, int.class, String.class, String.class, String.class};
     public final static Class<?>[] BLOOD_ANALYSIS_PARAMETER_TYPES = {double.class, double.class, String.class, String.class, int.class, int.class, int.class, int.class, String.class, String.class, String.class};

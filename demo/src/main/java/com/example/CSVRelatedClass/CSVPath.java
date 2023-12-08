@@ -1,6 +1,7 @@
 package com.example.CSVRelatedClass;
 
 public class CSVPath {
+    public final static String RESPONSETEAM_PATH = "demo/src/main/java/com/example/db/teamInfo.csv";
     public final static String DEPARTMENT_PATH = "demo/src/main/java/com/example/db/department.csv";
     public final static String DOCTOR_PATH = "demo/src/main/java/com/example/db/doctor.csv";
     public final static String MEDICINE_PATH = "demo/src/main/java/com/example/db/medicine.csv";
