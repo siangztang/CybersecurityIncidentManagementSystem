@@ -104,7 +104,7 @@ public class LoginController {
                 break;
             case 2:
                 ObservableList<ResponseTeam> listData = csvHandler.readCSV(CSVPath.RESPONSETEAM_PATH, ResponseTeam.class, ParameterTypes.RESPONSE_TEAM_PARAMETER_TYPES);
-                
+
                 for (ResponseTeam teamMember : listData) {
 
 
@@ -136,5 +136,17 @@ public class LoginController {
             default:
                 break;
         }
+    }
+
+    public static User getUser() {
+        return user;
+    }
+
+    public static Admin getAdmin() {
+        return admin;
+    }
+
+    public static ResponseTeam getResponseTeam() {
+        return responseTeam;
     }
 }
