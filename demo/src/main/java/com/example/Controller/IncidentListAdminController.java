@@ -8,7 +8,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.example.Admin;
 import com.example.AlertMessage;
 import com.example.Incident;
 import com.example.ResponseTeam;
@@ -232,7 +231,7 @@ public class IncidentListAdminController {
                         stage.setResizable(false);
                         stage.show();
                         IntrusionAnalysisController controller = loader.getController();
-                        controller.initData(admin, user, selectedIncident);
+                        controller.initData(user, selectedIncident);
                         Node node = (Node) event.getSource();
                         Stage currentStage = (Stage) node.getScene().getWindow();
                         currentStage.close();
@@ -257,12 +256,10 @@ public class IncidentListAdminController {
 
     private Incident checkInput = new Incident();
     private User user;
-    private Admin admin;
 
-    public void initData(Admin admin, User user){
-        this.admin = admin;
+    public void initData(User user){
         this.user = user;
-        unameLabel.setText(admin.getUsername());
+        unameLabel.setText(user.getUsername());
     }
 
     public void resetBtnAction(){

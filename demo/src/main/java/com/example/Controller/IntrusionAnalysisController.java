@@ -3,7 +3,6 @@ package com.example.Controller;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import com.example.Admin;
 import com.example.AlertMessage;
 import com.example.Analysis;
 import com.example.Incident;
@@ -136,7 +135,7 @@ public class IntrusionAnalysisController {
                     stage.setResizable(false);
                     stage.show();
                     IncidentListAdminController controller = loader.getController();
-                    controller.initData(admin, user);
+                    controller.initData(user);
                     Node node = (Node) event.getSource();
                     Stage currentStage = (Stage) node.getScene().getWindow();
                     currentStage.close();
@@ -197,8 +196,8 @@ public class IntrusionAnalysisController {
                         stage.setScene(scene);
                         stage.setResizable(false);
                         stage.show();
-                        // ResponseActionsController controller = loader.getController();
-                        // controller.initData(admin, user, incident_info, selectedAnalysis.getAnalysisId());
+                        ResponseActionsController controller = loader.getController();
+                        controller.initData(user, incident_info, selectedAnalysis.getAnalysisId());
                         Node node = (Node) event.getSource();
                         Stage currentStage = (Stage) node.getScene().getWindow();
                         currentStage.close();
@@ -241,15 +240,13 @@ public class IntrusionAnalysisController {
         }
     }
 
-    private Admin admin;
     private User user;
     private Incident incident_info;
 
-    public void initData(Admin admin, User user, Incident incident_info){
-        this.admin = admin;
+    public void initData(User user, Incident incident_info){
         this.user = user;
         this.incident_info = incident_info;
-        unameLabel.setText(admin.getUsername());
+        unameLabel.setText(user.getUsername());
         icdInfoId.setText(incident_info.getIncidentId());
         icdInfoTimestamp.setText(incident_info.getTimestamp());
         icdInfoDesc.setText(incident_info.getDescription());
@@ -281,6 +278,7 @@ public class IntrusionAnalysisController {
         resetBtn.setFocusTraversable(false);
         icdListBtn.setFocusTraversable(false);
         analysisTable.setFocusTraversable(false);
+        searchField.setFocusTraversable(false);
     }
 
     public ObservableList<Analysis> refreshData(){

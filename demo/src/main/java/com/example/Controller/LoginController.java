@@ -5,15 +5,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.example.Admin;
 import com.example.AlertMessage;
-import com.example.ResponseTeam;
 import com.example.User;
 import com.example.CSVRelatedClass.CSVHandler;
-import com.example.CSVRelatedClass.CSVPath;
-import com.example.CSVRelatedClass.ParameterTypes;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -66,10 +61,7 @@ public class LoginController {
 
     private AlertMessage alert = new AlertMessage();
     CSVHandler csvHandler = new CSVHandler();
-    private static User user;
-    private static Admin admin;
-    private static ResponseTeam responseTeam;
-    
+    private static User user;    
 
     public void login(){
         String uname = UsernameField.getText().trim();
@@ -82,7 +74,6 @@ public class LoginController {
                 alert.errorMessage("Invalid Username or Password");
                 break;
             case 1:
-                admin = new Admin(uname, password);
                 alert.successMessage("Login Successful");
                 try {
                     FXMLLoader loader = new FXMLLoader();
@@ -93,7 +84,7 @@ public class LoginController {
                     stage.setScene(scene);
                     stage.setResizable(false);
                     IncidentListAdminController controller = loader.getController();
-                    controller.initData(admin, user);
+                    controller.initData(user);
                     stage.show();
                     Stage currentStage = (Stage) lognbtn.getScene().getWindow();
                     currentStage.close();
@@ -103,16 +94,6 @@ public class LoginController {
                 }
                 break;
             case 2:
-                ObservableList<ResponseTeam> listData = csvHandler.readCSV(CSVPath.RESPONSETEAM_PATH, ResponseTeam.class, ParameterTypes.RESPONSE_TEAM_PARAMETER_TYPES);
-
-                for (ResponseTeam teamMember : listData) {
-
-
-                    if (teamMember.getUsername().equals(uname) && teamMember.getPassword().equals(password)) {
-                        responseTeam = new ResponseTeam(teamMember.getTeamId(), teamMember.getMemberName(), teamMember.getContactInfo(), uname, password);
-                        break; // Exit the loop if a match is found
-                    }
-                }
 
                 alert.successMessage("Login Successful");
                 try {
@@ -124,7 +105,7 @@ public class LoginController {
                     stage.setScene(scene);
                     stage.setResizable(false);
                     // IncidentListTeamController controller = loader.getController();
-                    // controller.initData(responseTeam);
+                    // controller.initData(user);
                     stage.show();
                     Stage currentStage = (Stage) lognbtn.getScene().getWindow();
                     currentStage.close();
@@ -140,13 +121,5 @@ public class LoginController {
 
     public static User getUser() {
         return user;
-    }
-
-    public static Admin getAdmin() {
-        return admin;
-    }
-
-    public static ResponseTeam getResponseTeam() {
-        return responseTeam;
     }
 }
