@@ -1,30 +1,21 @@
 package com.example;
 
-public class ResponseTeam extends User{
-
+public class ResponseTeam {
+    
     private String teamId;
-    private String memberName;
-    private String contactInfo;
+    private String teamName;
 
-    public ResponseTeam(String teamId, String memberName, String contactInfo, String username, String password) {
-        super(username, password);
+    public ResponseTeam(String teamId, String teamName) {
         this.teamId = teamId;
-        this.memberName = memberName;
-        this.contactInfo = contactInfo;
+        this.teamName = teamName;
     }
 
     public String getTeamId() { 
         return teamId; 
     }
 
-    public String getMemberName() { 
-        return memberName; 
+    public String getTeamName() { 
+        return teamName; 
     }
-
-    public String getContactInfo() { 
-        return contactInfo; 
-    }
-
-    
 
 }

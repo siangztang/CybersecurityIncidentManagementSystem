@@ -56,11 +56,10 @@
                      <center>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
-                              <TableView fx:id="icdListTable" layoutX="15.0" layoutY="65.0" prefHeight="381.0" prefWidth="1000.0">
+                              <TableView fx:id="responseTeamTable" layoutX="15.0" layoutY="65.0" prefHeight="381.0" prefWidth="1000.0">
                                  <columns>
-                                    <TableColumn fx:id="resTeamIDCol" editable="false" prefWidth="400.0" resizable="false" text="Team ID" />
-                                    <TableColumn fx:id="totalIcdCol" editable="false" minWidth="0.0" prefWidth="300.0" resizable="false" text="Total Incident" />
-                                    <TableColumn fx:id="totalTeamMembersCol" editable="false" prefWidth="300.0" resizable="false" text="Total Team Members" />
+                                    <TableColumn fx:id="resTeamIDCol" editable="false" prefWidth="200.0" resizable="false" text="Team ID" />
+                                    <TableColumn fx:id="resTeamNameCol" editable="false" prefWidth="800.0" resizable="false" text="Team Name" />
                                  </columns>
                               </TableView>
                               <TextField fx:id="searchField" layoutX="713.0" layoutY="14.0" prefHeight="33.0" prefWidth="301.0" promptText="Search" />
@@ -71,7 +70,7 @@
                                           <Font size="16.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="resTeamIDField" layoutX="178.0" layoutY="8.0" prefHeight="25.0" prefWidth="408.0" />
+                                    <TextField fx:id="resTeamNameField" layoutX="178.0" layoutY="8.0" prefHeight="25.0" prefWidth="408.0" />
                                     <Button id="updateBtn" fx:id="updateBtn" layoutX="705.0" layoutY="144.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Update" />
                                     <Button id="delBtn" fx:id="deleteBtn" layoutX="796.0" layoutY="144.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Delete" />
                                     <Button id="resetBtn" fx:id="resetBtn" layoutX="917.0" layoutY="144.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Reset" />

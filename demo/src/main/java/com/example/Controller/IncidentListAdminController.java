@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
-import java.util.Set;
 
 import com.example.AlertMessage;
 import com.example.Incident;
@@ -113,21 +111,12 @@ public class IncidentListAdminController {
         icdSecLvlComboBox.getItems().addAll("Low", "Medium", "High");
         icdStatusComboBox.getItems().addAll("Open", "Closed");
         icdAssignTeamComboBox.getItems().add("N/A");
-        ObservableList<ResponseTeam> responseTeamslistData = csvHandler.readCSV(CSVPath.RESPONSETEAM_PATH, ResponseTeam.class, ParameterTypes.RESPONSE_TEAM_PARAMETER_TYPES);
 
-        Set<String> uniqueResponseTeamNames = new HashSet<>();
+        ObservableList<ResponseTeam> listData = csvHandler.readCSV(CSVPath.RESPONSETEAM_PATH, ResponseTeam.class, ParameterTypes.RESPONSE_TEAM_PARAMETER_TYPES);
 
-        for (ResponseTeam responseTeams : responseTeamslistData) {
-            String responseTeamsName = responseTeams.getTeamId();
-
-            // Check if the response team name is not already in the Set
-            if (!uniqueResponseTeamNames.contains(responseTeamsName)) {
-                icdAssignTeamComboBox.getItems().add(responseTeamsName);
-
-                // Add the response team name to the Set to track it
-                uniqueResponseTeamNames.add(responseTeamsName);
-
-            }
+        for (ResponseTeam responseTeams : listData) {
+            String responseTeamsName = responseTeams.getTeamName();
+            icdAssignTeamComboBox.getItems().add(responseTeamsName);
         }
 
         addBtn.setOnAction(event -> {
@@ -155,8 +144,8 @@ public class IncidentListAdminController {
                 Stage stage = new Stage();
                 stage.setScene(scene);
                 stage.setResizable(false);
-                // ManageResTeamController controller = loader.getController();
-                // controller.initData(admin);
+                ManageResTeamController controller = loader.getController();
+                controller.initData(user);
                 stage.show();
                 Stage currentStage = (Stage) manageResTeamBtn.getScene().getWindow();
                 currentStage.close();
