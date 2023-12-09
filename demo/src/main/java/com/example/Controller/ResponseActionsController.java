@@ -219,8 +219,8 @@ public class ResponseActionsController {
                         stage.setScene(scene);
                         stage.setResizable(false);
                         stage.show();
-                        // IncidentResolutionController controller = loader.getController();
-                        // controller.initData(admin, user, incident_info, analysis_id, selectedActions.getActionId());
+                        IncidentResolutionController controller = loader.getController();
+                        controller.initData(user, incident_info, analysis_id, selectedActions.getActionId());
                         Node node = (Node) event.getSource();
                         Stage currentStage = (Stage) node.getScene().getWindow();
                         currentStage.close();
@@ -265,7 +265,7 @@ public class ResponseActionsController {
     private Incident incident_info;
     private String analysis_id;
 
-    public void initData( User user, Incident incident_info, String analysis_id){
+    public void initData(User user, Incident incident_info, String analysis_id){
         this.user = user;
         this.incident_info = incident_info;
         this.analysis_id = analysis_id;
