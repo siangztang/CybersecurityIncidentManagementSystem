@@ -51,7 +51,7 @@
                               <Label layoutX="29.0" layoutY="60.0" text="Timestamp:" />
                               <TextField fx:id="icdInfoId" disable="true" editable="false" layoutX="93.0" layoutY="21.0" text="CYB20231207" />
                               <TextField fx:id="icdInfoTimestamp" disable="true" editable="false" layoutX="93.0" layoutY="56.0" text="2023-12-07 14:30:00" />
-                              <Line endX="100.0" layoutX="125.0" layoutY="538.0" startX="-100.0" />
+                              <Line endX="100.0" layoutX="125.0" layoutY="603.0" startX="-100.0" />
                               <Button id="icdListBtn" fx:id="icdListBtn" layoutX="13.0" layoutY="616.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="225.0" text="Incident list" />
                               <Label layoutX="28.0" layoutY="95.0" text="Description:" />
                               <TextField fx:id="icdInfoDesc" disable="true" editable="false" layoutX="93.0" layoutY="91.0" prefWidth="149.0" text="Malware infection on a critical server" />
@@ -62,7 +62,6 @@
                               <Label layoutX="9.0" layoutY="200.0" text="Incident Status:" />
                               <TextField fx:id="icdInfoStatus" disable="true" editable="false" layoutX="94.0" layoutY="196.0" text="Open" />
                               <Line endX="100.0" layoutX="122.0" layoutY="14.0" startX="-100.0" />
-                              <Button id="backBtn" fx:id="backBtn" layoutX="13.0" layoutY="552.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="225.0" text="Back" />
                            </children>
                         </AnchorPane>
                      </left>
@@ -74,7 +73,7 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <TableView fx:id="treatmentCourseTable" layoutX="15.0" layoutY="43.0" prefHeight="381.0" prefWidth="1000.0">
+                              <TableView fx:id="analysisTable" layoutX="15.0" layoutY="52.0" prefHeight="381.0" prefWidth="1000.0">
                                 <columns>
                                   <TableColumn fx:id="analysisIdCol" prefWidth="100.0" resizable="false" text="Analysis ID" />
                                     <TableColumn fx:id="attackVectorCol" minWidth="0.0" prefWidth="185.0" resizable="false" text="Attack Vector" />
@@ -83,7 +82,7 @@
                                     <TableColumn fx:id="analysisDetailsCol" minWidth="0.0" prefWidth="295.0" resizable="false" text="Analysis Details" />
                                 </columns>
                               </TableView>
-                              <AnchorPane layoutX="15.0" layoutY="432.0" prefHeight="200.0" prefWidth="1000.0">
+                              <AnchorPane layoutX="15.0" layoutY="451.0" prefHeight="200.0" prefWidth="1000.0">
                                  <children>
                                     <Label layoutX="14.0" layoutY="8.0" text="Attack Vector:">
                                        <font>
@@ -112,13 +111,14 @@
                                     <TextArea fx:id="analysisDetailsField" layoutX="173.0" layoutY="125.0" prefHeight="69.0" prefWidth="390.0" />
                                     <TextField fx:id="attackVectorField" layoutX="173.0" layoutY="8.0" prefHeight="25.0" prefWidth="390.0" />
                                     <TextField fx:id="attackSignatureField" layoutX="173.0" layoutY="48.0" prefHeight="25.0" prefWidth="390.0" />
-                                    <TextField fx:id="compromisedDataField" layoutX="173.0" layoutY="88.0" prefHeight="25.0" prefWidth="390.0" />
+                                    <TextField fx:id="compromisedDataField" layoutX="173.0" layoutY="89.0" prefHeight="25.0" prefWidth="390.0" />
                                  </children></AnchorPane>
-                              <Label layoutX="807.0" layoutY="423.0" text="Double Click Row For More Information.">
+                              <Label layoutX="807.0" layoutY="433.0" text="Double Click Row For More Information.">
                                  <font>
                                     <Font name="System Italic" size="12.0" />
                                  </font>
                               </Label>
+                              <TextField fx:id="searchField" layoutX="714.0" layoutY="10.0" prefHeight="33.0" prefWidth="301.0" promptText="Search" />
                            </children>
                         </AnchorPane>
                      </center>

@@ -108,9 +108,6 @@ public class IncidentListAdminController {
 
     CSVHandler csvHandler = new CSVHandler();
     AlertMessage alert = new AlertMessage();
-    private Incident checkInput = new Incident();
-    // private User user;
-    // private Admin admin;
 
     @FXML
     void initialize(){
@@ -234,8 +231,8 @@ public class IncidentListAdminController {
                         stage.setScene(scene);
                         stage.setResizable(false);
                         stage.show();
-                        // IntrusionAnalysisController controller = loader.getController();
-                        // controller.initData(admin, selectedPatient);
+                        IntrusionAnalysisController controller = loader.getController();
+                        controller.initData(admin, user, selectedIncident);
                         Node node = (Node) event.getSource();
                         Stage currentStage = (Stage) node.getScene().getWindow();
                         currentStage.close();
@@ -258,7 +255,13 @@ public class IncidentListAdminController {
         }
     }
 
+    private Incident checkInput = new Incident();
+    private User user;
+    private Admin admin;
+
     public void initData(Admin admin, User user){
+        this.admin = admin;
+        this.user = user;
         unameLabel.setText(admin.getUsername());
     }
 
@@ -344,7 +347,7 @@ public class IncidentListAdminController {
                 });
             });
                 final SortedList<Incident> incidents_list = new SortedList<>(filteredData);
-                incidents_list.comparatorProperty().bind(incidents_list.comparatorProperty());
+                incidents_list.comparatorProperty().bind(icdListTable.comparatorProperty());
                 icdListTable.setItems(incidents_list);
             });
         }
