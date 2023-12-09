@@ -81,7 +81,7 @@
                                           <Font size="16.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="icdDescField" layoutX="178.0" layoutY="8.0" prefHeight="25.0" prefWidth="408.0" />
+                                    <TextField fx:id="icdDescField" layoutX="186.0" layoutY="8.0" prefHeight="25.0" prefWidth="408.0" />
                                     <Label layoutX="16.0" layoutY="88.0" text="Affected System:">
                                        <font>
                                           <Font size="16.0" />
@@ -92,9 +92,9 @@
                                           <Font size="16.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="icdSecLvlComboBox" layoutX="178.0" layoutY="48.0" prefWidth="150.0" />
-                                    <TextField fx:id="icdAffectedField" layoutX="179.0" layoutY="88.0" prefHeight="25.0" prefWidth="407.0" />
-                                    <Label layoutX="16.0" layoutY="168.0" text="Assign Department: ">
+                                    <ComboBox fx:id="icdSecLvlComboBox" layoutX="186.0" layoutY="48.0" prefWidth="150.0" />
+                                    <TextField fx:id="icdAffectedField" layoutX="186.0" layoutY="88.0" prefHeight="25.0" prefWidth="407.0" />
+                                    <Label layoutX="16.0" layoutY="168.0" text="Assign Response Team: ">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
@@ -102,9 +102,9 @@
                                     <Button id="updateBtn" fx:id="updateBtn" layoutX="705.0" layoutY="144.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Update" />
                                     <Button id="delBtn" fx:id="deleteBtn" layoutX="796.0" layoutY="144.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Delete" />
                                     <Button id="resetBtn" fx:id="resetBtn" layoutX="917.0" layoutY="144.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Reset" />
-                                    <ComboBox fx:id="icdStatusComboBox" layoutX="179.0" layoutY="128.0" prefWidth="150.0" />
+                                    <ComboBox fx:id="icdStatusComboBox" layoutX="186.0" layoutY="128.0" prefWidth="150.0" />
                                     <Button id="addBtn" fx:id="addBtn" layoutX="613.0" layoutY="144.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Add" />
-                                    <ComboBox fx:id="icdAssignTeamComboBox" layoutX="178.0" layoutY="168.0" prefWidth="150.0" />
+                                    <ComboBox fx:id="icdAssignTeamComboBox" layoutX="186.0" layoutY="168.0" prefWidth="150.0" />
                                  </children>
                               </AnchorPane>
                               <Label layoutX="806.0" layoutY="448.0" text="Double Click Row For More Information.">

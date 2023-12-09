@@ -2,7 +2,6 @@ package com.example;
 
 import com.example.CSVRelatedClass.CSVHandler;
 import com.example.CSVRelatedClass.CSVPath;
-import com.example.CSVRelatedClass.CustomComparator;
 import com.example.CSVRelatedClass.ParameterTypes;
 
 import javafx.collections.ObservableList;

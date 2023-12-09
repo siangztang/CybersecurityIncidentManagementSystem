@@ -20,6 +20,10 @@ public class Incident {
         this.handleBy = handleBy;
     }
 
+    public Incident(){
+        
+    }
+
     // Getters 
     public String getIncidentId() {
         return incidentId;
@@ -47,6 +51,36 @@ public class Incident {
 
     public String getHandleBy() {
         return handleBy;
+    }
+
+    public int validationIncident(String description, String securityLevel, String affectedSystem, String incidentStatus, String handleBy) {
+        // validate description
+        if (description == null || description.isEmpty() || description.length() == 0) {
+            return 0;
+        }
+
+        // validate securityLevel
+        if (securityLevel == null || securityLevel.isEmpty() || securityLevel.length() == 0) {
+            return 0;
+        }
+
+        // validate affectedSystem
+        if (affectedSystem == null || affectedSystem.isEmpty() || affectedSystem.length() == 0) {
+            return 0;
+        }
+
+        // validate incidentStatus
+        if (incidentStatus == null || incidentStatus.isEmpty() || incidentStatus.length() == 0) {
+            return 0;
+        }
+
+        // validate handleBy
+        if (handleBy == null || handleBy.isEmpty() || handleBy.length() == 0) {
+            return 0;
+        }
+
+        return 1;
+        
     }
 
 }
