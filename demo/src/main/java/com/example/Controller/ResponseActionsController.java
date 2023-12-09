@@ -161,8 +161,8 @@ public class ResponseActionsController {
                     stage.setScene(scene);
                     stage.setResizable(false);
                     stage.show();
-                    // IncidentListTeamController controller = loader.getController();
-                    // controller.initData(user);
+                    IncidentListTeamController controller = loader.getController();
+                    controller.initData(user);
                     Node node = (Node) event.getSource();
                     Stage currentStage = (Stage) node.getScene().getWindow();
                     currentStage.close();

@@ -104,8 +104,8 @@ public class LoginController {
                     Stage stage = new Stage();
                     stage.setScene(scene);
                     stage.setResizable(false);
-                    // IncidentListTeamController controller = loader.getController();
-                    // controller.initData(user);
+                    IncidentListTeamController controller = loader.getController();
+                    controller.initData(user);
                     stage.show();
                     Stage currentStage = (Stage) lognbtn.getScene().getWindow();
                     currentStage.close();
