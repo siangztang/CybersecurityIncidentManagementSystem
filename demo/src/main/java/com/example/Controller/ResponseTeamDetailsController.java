@@ -402,8 +402,9 @@ public class ResponseTeamDetailsController {
                         return true;
                     }
                     String toLowerCaseNewValue = newValue.toLowerCase();
-
-                        if(ResponseTeamUser.getMemberName().toLowerCase().contains(toLowerCaseNewValue)){
+                        if (ResponseTeamUser.getMemberId().toLowerCase().contains(toLowerCaseNewValue)){
+                            return true;
+                        }else if(ResponseTeamUser.getMemberName().toLowerCase().contains(toLowerCaseNewValue)){
                             return true;
                         }else if(ResponseTeamUser.getContactInfo().toLowerCase().contains(toLowerCaseNewValue)){
                             return true;
@@ -696,11 +697,71 @@ public class ResponseTeamDetailsController {
     }
 
     public void resTeamInfoUpdateBtnAction(){
+        if(!resTeamCheckSelected()){
+            String teamId = resTeamIdInfo.getText().trim();
+            String resTeamUserId = resTeamInfoTable.getSelectionModel().getSelectedItem().getMemberId();
+            String resMemberName = resTeamMemberNameField.getText().trim();
+            String resTeamContact = resTeamContactField.getText().trim();
+            String resTeamUsername = resTeamUsernameField.getText().trim();
+            String resTeamPassword = resTeamPasswordField.getText().trim();
 
+            if(!resTeamCheckEmpty()){
+                if(rtucheckInput.validationResponseTeamUser(teamId, resMemberName, resTeamContact, resTeamUsername, resTeamPassword) == 1){
+                    //creata new response team user object
+                    ResponseTeamUser updatedResponseTeamUsers = new ResponseTeamUser(teamId, resTeamUserId, resMemberName, resTeamContact, resTeamUsername, resTeamPassword);
+
+                    //update response team user in csv file
+                    csvHandler.updateCSV(CSVPath.RESPONSETEAM_USER_PATH, 1, resTeamUserId, updatedResponseTeamUsers);
+
+                    //show success message
+                    alert.successMessage("Response team user updated successfully");
+
+                    //refresh data
+                    resTeamRefreshData();
+
+                    //refresh table
+                    responseTeamInfoShowListData();
+
+                    // search filter reset
+                    searchFieldTeamInfo();
+
+                    // unfocus all
+                    unFocusAll();
+
+                    //reset fields
+                    resTeamRestBtnAction();
+
+                }
+            }
+        }
     }
 
     public void resTeamInfoDeleteBtnAction(){
+        if(!resTeamCheckSelected()){
+            //get selected response team user
+            String resTeamUserId = resTeamInfoTable.getSelectionModel().getSelectedItem().getMemberId();
+            
+            //delete response team user in csv file
+            csvHandler.deleteCSV(CSVPath.RESPONSETEAM_USER_PATH, 1, resTeamUserId);
 
+            //show success message
+            alert.successMessage("Response team user deleted successfully");
+
+            //refresh data
+            resTeamRefreshData();
+
+            //refresh table
+            responseTeamInfoShowListData();
+
+            // search filter reset
+            searchFieldTeamInfo();
+
+            // unfocus all
+            unFocusAll();
+
+            //reset fields
+            resTeamRestBtnAction();
+        }
     }
 
 }
