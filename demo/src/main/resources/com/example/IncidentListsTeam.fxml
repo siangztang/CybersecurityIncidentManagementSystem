@@ -50,8 +50,16 @@
                               <Label layoutX="55.0" layoutY="24.0" />
                               <Line endX="100.0" layoutX="122.0" layoutY="14.0" startX="-100.0" />
                               <Button id="logOutBtn" fx:id="logOutBtn" layoutX="12.0" layoutY="616.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="225.0" text="Log Out" />
-                              <Label layoutX="29.0" layoutY="25.0" text="Team ID:" />
-                              <TextField fx:id="teamInfoID" disable="true" editable="false" layoutX="93.0" layoutY="21.0" text="ABCD" />
+                              <Label layoutX="52.0" layoutY="19.0" text="Team ID:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="manageResTeamID" layoutX="125.0" layoutY="19.0" text="ABCD">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </left>
