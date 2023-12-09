@@ -64,6 +64,48 @@ public class CSVHandler {
         return FXCollections.observableList(objects);
     }
 
+    public <T> ObservableList<T> readCSV(String filePath, Class<T> clazz, String getColumnName, String getValue, Class<?>... parameterTypes) {
+        ObservableList<T> objects = FXCollections.observableArrayList();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+
+                Constructor<T> constructor = clazz.getDeclaredConstructor(parameterTypes);
+                int parameterCount = constructor.getParameterCount();
+
+                // Check if the number of parameters matches the CSV data columns
+                if (parameterCount == data.length) {
+                    Object[] arguments = new Object[parameterCount];
+                    for (int i = 0; i < parameterCount; i++) {
+                        Class<?> parameterType = constructor.getParameterTypes()[i];
+                        arguments[i] = convertToType(data[i], parameterType);
+                    }
+
+                    T object = constructor.newInstance(arguments);
+
+                    // Check if the id matches the specified value
+                    // System.out.println(getFieldValue(objects, getColumnName));
+                    
+                    String matchValue = getFieldValue(object, getColumnName);
+                    if (matchValue != null && matchValue.equals(getValue)) {
+                        objects.add(object);
+                    }
+                } else {
+                    // Handle the case when the number of parameters does not match
+                    throw new IllegalArgumentException("The number of parameters does not match");
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return FXCollections.observableList(objects);
+    }
+
     public <T> ObservableList<T> readCSV(String filePath, Class<T> clazz, String getColumnName, String getValue, Comparator<T> comparator, Class<?>... parameterTypes) {
         ObservableList<T> objects = FXCollections.observableArrayList();
 
@@ -177,6 +219,7 @@ public class CSVHandler {
             writer.write(getCSVLine(object));
             writer.newLine();
             System.out.println("Data appended to CSV file successfully!");
+            System.out.println("Data: " + getCSVLine(object));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -231,8 +274,11 @@ public class CSVHandler {
         for (Field field : fields) {
             field.setAccessible(true);
             try {
-                Object value = field.get(object);
-                line.append(value).append(",");
+                if (!field.getName().equals("csvHandler")) { // Skip the csvHandler field
+                    Object value = field.get(object);
+                    System.out.println("Field: " + field.getName() + ", Value: " + value); // print field name and value
+                    line.append(value).append(",");
+                }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }

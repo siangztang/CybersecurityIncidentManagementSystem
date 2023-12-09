@@ -115,14 +115,14 @@ public class ManageResTeamController {
                 ResponseTeam selectedResponseTeam = responseTeamTable.getSelectionModel().getSelectedItem();
                 if (selectedResponseTeam != null) {
                     // Do something with the selected Response Team data
-                    System.out.println("Selected Response Team ID: " + selectedResponseTeam.getTeamId());
+                    System.out.println("Selected Response Team ID: " + selectedResponseTeam.getTeamName());
                     resTeamNameField.setText(selectedResponseTeam.getTeamName());
                 }
             } else if (event.getClickCount() == 2){
                 ResponseTeam selectedResponseTeam = responseTeamTable.getSelectionModel().getSelectedItem();
                 if (selectedResponseTeam != null) {
                     // Do something with the selected Response Team data
-                    System.out.println("Selected Response Team ID: " + selectedResponseTeam.getTeamId());
+                    System.out.println("Selected Response Team ID: " + selectedResponseTeam.getTeamName());
                     try {
                         FXMLLoader loader = new FXMLLoader();
                         Parent root = loader.load(new FileInputStream("demo/src/main/resources/com/example/ResponseTeamDetails.fxml"));
@@ -131,8 +131,8 @@ public class ManageResTeamController {
                         stage.setScene(scene);
                         stage.setResizable(false);
                         stage.show();
-                        // ResponseTeamDetailsController controller = loader.getController();
-                        // controller.initData(user, incident_info, analysis_id, selectedActions.getActionId());
+                        ResponseTeamDetailsController controller = loader.getController();
+                        controller.initData(user, selectedResponseTeam.getTeamName());
                         Node node = (Node) event.getSource();
                         Stage currentStage = (Stage) node.getScene().getWindow();
                         currentStage.close();
@@ -153,7 +153,6 @@ public class ManageResTeamController {
     private User user;
 
     public void initData(User user){
-        System.out.println("test");
         this.user = user;
         unameLabel.setText(user.getUsername());
         responseTeamTableShowListData();
@@ -245,6 +244,15 @@ public class ManageResTeamController {
         String teamName = resTeamNameField.getText();
 
         if(!checkEmpty()){
+
+            // check if response team name already exists
+            for (ResponseTeam responseTeam : refreshData()){
+                if (responseTeam.getTeamName().equals(teamName)){
+                    alert.errorMessage("Response Team Name already exists");
+                    return;
+                }
+            }
+
             //get team id
             String teamId = "T" + String.format("%d", csvHandler.getMaxId(refreshData(), ResponseTeam::getTeamId, "T") + 1);
 
@@ -281,6 +289,14 @@ public class ManageResTeamController {
             String teamName = resTeamNameField.getText();
 
             if(!checkEmpty()){
+
+                // check if response team name already exists
+                for (ResponseTeam responseTeam : refreshData()){
+                    if (responseTeam.getTeamName().equals(teamName)){
+                        alert.errorMessage("Response Team Name already exists");
+                        return;
+                    }
+                }
 
                 //create new incident object
                 ResponseTeam updatedTeam = new ResponseTeam(teamId, teamName);
