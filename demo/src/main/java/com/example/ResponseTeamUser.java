@@ -47,15 +47,15 @@ public class ResponseTeamUser extends User{
             return 0;
         }
         // validate contactInfo
-        if (contactInfo == null || contactInfo.isEmpty() || contactInfo.length() == 0) {
+        if (contactInfo == null || !contactInfo.matches("^(\\+?6?01)[02-46-9]-*[0-9]{7}$|^(\\+?6?01)[1]-*[0-9]{8}$")){ 
             return 0;
         }
         // validate username
-        if (username == null || username.isEmpty() || username.length() == 0) {
+        if (username == null || username.isEmpty() || username.length() < 5) {
             return 0;
         }
         // validate password
-        if (password == null || password.isEmpty() || password.length() == 0) {
+        if (password == null || password.isEmpty() || password.length() < 5) {
             return 0;
         }
         
