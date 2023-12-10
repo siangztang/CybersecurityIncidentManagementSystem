@@ -25,7 +25,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -33,6 +35,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class IncidentListAdminController {
@@ -108,8 +111,8 @@ public class IncidentListAdminController {
 
     @FXML
     void initialize(){
-        icdSecLvlComboBox.getItems().addAll("Low", "Medium", "High");
-        icdStatusComboBox.getItems().addAll("Open", "Closed");
+        icdSecLvlComboBox.getItems().addAll("Low", "Medium", "High", "Critical");
+        icdStatusComboBox.getItems().addAll("Open", "Investigate", "Escalated", "Resolved", "Closed");
         icdAssignTeamComboBox.getItems().add("N/A");
 
         ObservableList<ResponseTeam> listData = csvHandler.readCSV(CSVPath.RESPONSETEAM_PATH, ResponseTeam.class, ParameterTypes.RESPONSE_TEAM_PARAMETER_TYPES);
@@ -291,6 +294,25 @@ public class IncidentListAdminController {
         icdAffectedCol.setCellValueFactory(new PropertyValueFactory<>("affectedSystem"));
         icdStatusCol.setCellValueFactory(new PropertyValueFactory<>("incidentStatus"));
         icdHandleCol.setCellValueFactory(new PropertyValueFactory<>("handleBy"));
+        
+        icdDescCol.setCellFactory(tc -> {
+            TableCell<Incident, String> cell = new TableCell<>();
+            Text text = new Text();
+            cell.setGraphic(text);
+            cell.setPrefHeight(Control.USE_COMPUTED_SIZE);
+            text.wrappingWidthProperty().bind(icdDescCol.widthProperty());
+            text.textProperty().bind(cell.itemProperty());
+            return cell ;
+        });
+        icdAffectedCol.setCellFactory(tc -> {
+            TableCell<Incident, String> cell = new TableCell<>();
+            Text text = new Text();
+            cell.setGraphic(text);
+            cell.setPrefHeight(Control.USE_COMPUTED_SIZE);
+            text.wrappingWidthProperty().bind(icdAffectedCol.widthProperty());
+            text.textProperty().bind(cell.itemProperty());
+            return cell ;
+        });
 
         icdListTable.setItems(refreshData());
     }

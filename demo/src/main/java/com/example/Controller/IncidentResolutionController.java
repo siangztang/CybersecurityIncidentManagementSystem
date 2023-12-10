@@ -22,7 +22,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -31,6 +33,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class IncidentResolutionController {
@@ -113,7 +116,7 @@ public class IncidentResolutionController {
     @FXML
     void initialize(){
 
-        resolutionStatusComboBox.getItems().addAll("Open", "Closed");
+        resolutionStatusComboBox.getItems().addAll("Resolved", "Partially Resolved", "Not Resolved", "False Positive", "Reoccurred", "Closed without action", "Mitigated and Closed", "Pending Verification", "Awaiting Closure", "Escalated");
         
         backBtn.setOnAction(event -> {
             try {
@@ -298,10 +301,29 @@ public class IncidentResolutionController {
 
     public void incidentResolutionShowListData(){
         resolutionIdCol.setCellValueFactory(new PropertyValueFactory<>("resolutionId"));
-        resolutionStatusCol.setCellValueFactory(new PropertyValueFactory<>("resolutionStatus"));
         lessonsLearnedCol.setCellValueFactory(new PropertyValueFactory<>("lessonsLearned"));
         closureNotesCol.setCellValueFactory(new PropertyValueFactory<>("closureNotes"));
-
+        resolutionStatusCol.setCellValueFactory(new PropertyValueFactory<>("resolutionStatus"));
+        
+        closureNotesCol.setCellFactory(tc -> {
+            TableCell<Resolution, String> cell = new TableCell<>();
+            Text text = new Text();
+            cell.setGraphic(text);
+            cell.setPrefHeight(Control.USE_COMPUTED_SIZE);
+            text.wrappingWidthProperty().bind(closureNotesCol.widthProperty());
+            text.textProperty().bind(cell.itemProperty());
+            return cell ;
+        });
+        lessonsLearnedCol.setCellFactory(tc -> {
+            TableCell<Resolution, String> cell = new TableCell<>();
+            Text text = new Text();
+            cell.setGraphic(text);
+            cell.setPrefHeight(Control.USE_COMPUTED_SIZE);
+            text.wrappingWidthProperty().bind(lessonsLearnedCol.widthProperty());
+            text.textProperty().bind(cell.itemProperty());
+            return cell ;
+        });
+        
         incidentResolutionTable.setItems(refreshData());
     }
 
@@ -367,10 +389,10 @@ public class IncidentResolutionController {
             if(checkInput.validationResolution(actionId, lessonsLeadned, closureNotes, resolutionStatus) == 1){
 
                 // generate resolution id
-                String action_id = "R" + String.format("%d", csvHandler.getMaxId(refreshAllData(), Resolution::getResolutionId, "R") + 1);
+                String resolution_id = "R" + String.format("%d", csvHandler.getMaxId(refreshAllData(), Resolution::getResolutionId, "R") + 1);
 
                 // create resolution object
-                Resolution resolution = new Resolution(action_id, actionId, lessonsLeadned, closureNotes, resolutionStatus);
+                Resolution resolution = new Resolution(resolution_id, actionId, lessonsLeadned, closureNotes, resolutionStatus);
 
                 // write to csv
                 csvHandler.writeCSV(CSVPath.RESOLUTION_PATH, resolution);
@@ -380,7 +402,7 @@ public class IncidentResolutionController {
 
                 //refresh data
                 refreshData();
-
+                
                 // refresh table
                 incidentResolutionShowListData();
 

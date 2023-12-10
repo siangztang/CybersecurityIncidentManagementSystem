@@ -108,8 +108,8 @@
                                           <Font size="16.0" />
                                        </font>
                                     </Label>
-                                    <TextArea fx:id="lessonsLearnedField" layoutX="173.0" layoutY="88.0" prefHeight="69.0" prefWidth="390.0" />
-                                    <TextArea fx:id="closureNotesField" layoutX="173.0" layoutY="14.0" prefHeight="69.0" prefWidth="390.0" />
+                                    <TextArea fx:id="closureNotesField" layoutX="173.0" layoutY="88.0" prefHeight="69.0" prefWidth="390.0" />
+                                    <TextArea fx:id="lessonsLearnedField" layoutX="173.0" layoutY="14.0" prefHeight="69.0" prefWidth="390.0" />
                                     <ComboBox fx:id="resolutionStatusComboBox" layoutX="173.0" layoutY="164.0" prefWidth="150.0" />
                                  </children></AnchorPane>
                               <Label layoutX="807.0" layoutY="447.0" text="Double Click Row For More Information.">

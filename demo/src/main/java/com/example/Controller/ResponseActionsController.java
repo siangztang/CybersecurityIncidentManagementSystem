@@ -110,8 +110,8 @@ public class ResponseActionsController {
     @FXML
     void initialize(){
         
-        actionTypeComboBox.getItems().addAll("Preventative", "Corrective", "Detective");
-        actionStatusComboBox.getItems().addAll("Open", "Closed");
+        actionTypeComboBox.getItems().addAll("Isolation", "Patching");
+        actionStatusComboBox.getItems().addAll("Not Started", "In Progress", "Pending", "Completed", "Failed", "Deferred", "Cancelled", "Reopened", "Reviewe Required", "Awaiting Verification", "On Hold");
 
         backBtn.setOnAction(event -> {
             try {

@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 
 import com.example.AlertMessage;
 import com.example.Incident;
+import com.example.Resolution;
 import com.example.ResponseTeam;
 import com.example.ResponseTeamUser;
 import com.example.User;
@@ -26,8 +27,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -35,6 +38,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ResponseTeamDetailsController {
@@ -386,7 +390,24 @@ public class ResponseTeamDetailsController {
         icdSecLvlCol.setCellValueFactory(new PropertyValueFactory<>("securityLevel"));
         icdAffectedCol.setCellValueFactory(new PropertyValueFactory<>("affectedSystem"));
         icdStatusCol.setCellValueFactory(new PropertyValueFactory<>("incidentStatus"));
-
+        icdDescCol.setCellFactory(tc -> {
+            TableCell<Incident, String> cell = new TableCell<>();
+            Text text = new Text();
+            cell.setGraphic(text);
+            cell.setPrefHeight(Control.USE_COMPUTED_SIZE);
+            text.wrappingWidthProperty().bind(icdDescCol.widthProperty());
+            text.textProperty().bind(cell.itemProperty());
+            return cell ;
+        });
+        icdAffectedCol.setCellFactory(tc -> {
+            TableCell<Incident, String> cell = new TableCell<>();
+            Text text = new Text();
+            cell.setGraphic(text);
+            cell.setPrefHeight(Control.USE_COMPUTED_SIZE);
+            text.wrappingWidthProperty().bind(icdAffectedCol.widthProperty());
+            text.textProperty().bind(cell.itemProperty());
+            return cell ;
+        });
         icdListTable.setItems(icdrefreshData());
     }
 
@@ -660,6 +681,14 @@ public class ResponseTeamDetailsController {
         if(!resTeamCheckEmpty()){
             if (rtucheckInput.validationResponseTeamUser(teamId, resMemberName, resTeamContact, resTeamUsername, resTeamPassword) == 1) {
 
+                // check if username already exists
+                for (ResponseTeamUser responseTeamUser : resTeamRefreshAllData()){
+                    if (responseTeamUser.getUsername().equals(resTeamUsername)){
+                        alert.errorMessage("Username already exists");
+                        return;
+                    }
+                }
+
                 //generate response team user id
                 String resTeamUserID = "RTU" + String.format("%d", csvHandler.getMaxId(resTeamRefreshAllData(), ResponseTeamUser::getMemberId, "RTU") + 1);
 
@@ -707,6 +736,15 @@ public class ResponseTeamDetailsController {
 
             if(!resTeamCheckEmpty()){
                 if(rtucheckInput.validationResponseTeamUser(teamId, resMemberName, resTeamContact, resTeamUsername, resTeamPassword) == 1){
+                    
+                    // check if username already exists
+                    for (ResponseTeamUser responseTeamUser : resTeamRefreshAllData()){
+                        if (responseTeamUser.getUsername().equals(resTeamUsername)){
+                            alert.errorMessage("Username already exists");
+                            return;
+                        }
+                    }
+
                     //creata new response team user object
                     ResponseTeamUser updatedResponseTeamUsers = new ResponseTeamUser(teamId, resTeamUserId, resMemberName, resTeamContact, resTeamUsername, resTeamPassword);
 

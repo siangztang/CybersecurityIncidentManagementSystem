@@ -6,6 +6,7 @@ import java.io.IOException;
 import com.example.AlertMessage;
 import com.example.Analysis;
 import com.example.Incident;
+import com.example.Resolution;
 import com.example.User;
 import com.example.CSVRelatedClass.CSVHandler;
 import com.example.CSVRelatedClass.CSVPath;
@@ -21,7 +22,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -30,6 +33,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class IntrusionAnalysisController {
@@ -299,7 +303,44 @@ public class IntrusionAnalysisController {
         attackSignatureCol.setCellValueFactory(new PropertyValueFactory<>("attackSignature"));
         compromisedDataCol.setCellValueFactory(new PropertyValueFactory<>("compromisedData"));
         analysisDetailsCol.setCellValueFactory(new PropertyValueFactory<>("analysisDetails"));
-
+        
+        attackVectorCol.setCellFactory(tc -> {
+            TableCell<Analysis, String> cell = new TableCell<>();
+            Text text = new Text();
+            cell.setGraphic(text);
+            cell.setPrefHeight(Control.USE_COMPUTED_SIZE);
+            text.wrappingWidthProperty().bind(attackVectorCol.widthProperty());
+            text.textProperty().bind(cell.itemProperty());
+            return cell ;
+        });
+        attackSignatureCol.setCellFactory(tc -> {
+            TableCell<Analysis, String> cell = new TableCell<>();
+            Text text = new Text();
+            cell.setGraphic(text);
+            cell.setPrefHeight(Control.USE_COMPUTED_SIZE);
+            text.wrappingWidthProperty().bind(attackVectorCol.widthProperty());
+            text.textProperty().bind(cell.itemProperty());
+            return cell ;
+        });
+        compromisedDataCol.setCellFactory(tc -> {
+            TableCell<Analysis, String> cell = new TableCell<>();
+            Text text = new Text();
+            cell.setGraphic(text);
+            cell.setPrefHeight(Control.USE_COMPUTED_SIZE);
+            text.wrappingWidthProperty().bind(attackVectorCol.widthProperty());
+            text.textProperty().bind(cell.itemProperty());
+            return cell ;
+        });
+        analysisDetailsCol.setCellFactory(tc -> {
+            TableCell<Analysis, String> cell = new TableCell<>();
+            Text text = new Text();
+            cell.setGraphic(text);
+            cell.setPrefHeight(Control.USE_COMPUTED_SIZE);
+            text.wrappingWidthProperty().bind(attackVectorCol.widthProperty());
+            text.textProperty().bind(cell.itemProperty());
+            return cell ;
+        });
+        
         analysisTable.setItems(refreshData());
 
     }
