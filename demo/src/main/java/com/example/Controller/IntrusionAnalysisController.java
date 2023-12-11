@@ -6,7 +6,6 @@ import java.io.IOException;
 import com.example.AlertMessage;
 import com.example.Analysis;
 import com.example.Incident;
-import com.example.Resolution;
 import com.example.User;
 import com.example.CSVRelatedClass.CSVHandler;
 import com.example.CSVRelatedClass.CSVPath;

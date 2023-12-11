@@ -8,7 +8,6 @@ import java.time.format.DateTimeFormatter;
 
 import com.example.AlertMessage;
 import com.example.Incident;
-import com.example.Resolution;
 import com.example.ResponseTeam;
 import com.example.ResponseTeamUser;
 import com.example.User;
