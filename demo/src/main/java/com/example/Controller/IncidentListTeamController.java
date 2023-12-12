@@ -47,6 +47,12 @@ public class IncidentListTeamController {
     private Button deleteBtn;
 
     @FXML
+    private Button showAllBtn;
+
+    @FXML
+    private Button filterByTeamBtn;
+
+    @FXML
     private TableColumn<Incident, String> icdAffectedCol;
 
     @FXML
@@ -54,6 +60,9 @@ public class IncidentListTeamController {
 
     @FXML
     private TableColumn<Incident, String> icdDescCol;
+
+    @FXML
+    private TableColumn<Incident, String> icdHandleCol;
 
     @FXML
     private TextField icdDescField;
@@ -122,6 +131,20 @@ public class IncidentListTeamController {
 
         resetBtn.setOnAction(event -> {
             resetBtnAction();
+        });
+
+        showAllBtn.setOnAction(event -> {
+            showAllBtn.setDisable(true);
+            filterByTeamBtn.setDisable(false);
+            incidentShowListData();
+            searchFilter();
+        });
+
+        filterByTeamBtn.setOnAction(event -> {
+            showAllBtn.setDisable(false);
+            filterByTeamBtn.setDisable(true);
+            incidentShowListData();
+            searchFilter();
         });
 
         logOutBtn.setOnAction(event -> {
@@ -246,11 +269,20 @@ public class IncidentListTeamController {
         icdStatusComboBox.setFocusTraversable(false);
         icdListTable.setFocusTraversable(false);
         resTeamIdInfo.setFocusTraversable(false);
+        showAllBtn.setFocusTraversable(false);
+        filterByTeamBtn.setFocusTraversable(false);
     }
 
     private ObservableList<Incident> refreshData(){
-        ObservableList<Incident> listData = csvHandler.readCSV(CSVPath.INCIDENT_PATH, Incident.class, "handleBy", teamId, CustomComparator.createComparator(Incident::getIncidentId, 3), ParameterTypes.INCIDENT_PARAMETER_TYPES);
-        return listData;
+
+        if (filterByTeamBtn.isDisabled() && !showAllBtn.isDisabled()) {
+            ObservableList<Incident> listData = csvHandler.readCSV(CSVPath.INCIDENT_PATH, Incident.class, "handleBy", teamId, CustomComparator.createComparator(Incident::getIncidentId, 3), ParameterTypes.INCIDENT_PARAMETER_TYPES);
+            return listData;
+        } else {
+            ObservableList<Incident> listData = csvHandler.readCSV(CSVPath.INCIDENT_PATH, Incident.class, CustomComparator.createComparator(Incident::getIncidentId, 3), ParameterTypes.INCIDENT_PARAMETER_TYPES);
+            return listData;
+        }
+
     }
 
     public void incidentShowListData(){
@@ -260,6 +292,7 @@ public class IncidentListTeamController {
         icdSecLvlCol.setCellValueFactory(new PropertyValueFactory<>("securityLevel"));
         icdAffectedCol.setCellValueFactory(new PropertyValueFactory<>("affectedSystem"));
         icdStatusCol.setCellValueFactory(new PropertyValueFactory<>("incidentStatus"));
+        icdHandleCol.setCellValueFactory(new PropertyValueFactory<>("handleBy"));
         
         icdDescCol.setCellFactory(tc -> {
             TableCell<Incident, String> cell = new TableCell<>();
