@@ -136,6 +136,9 @@ public class ResponseTeamDetailsController {
     private Button responseTeamInfoUpdateBtn;
 
     @FXML
+    private ComboBox<String> resAssignTeamComboBox;
+
+    @FXML
     private StackPane response_team_info_page;
 
     @FXML
@@ -161,6 +164,7 @@ public class ResponseTeamDetailsController {
         for (ResponseTeam responseTeams : listData) {
             String responseTeamsName = responseTeams.getTeamName();
             icdAssignTeamComboBox.getItems().add(responseTeamsName);
+            resAssignTeamComboBox.getItems().add(responseTeamsName);
         }
 
         icdAddBtn.setOnAction(event -> {
@@ -296,6 +300,7 @@ public class ResponseTeamDetailsController {
                     resTeamContactField.setText(selectedResponseTeamUser.getContactInfo());
                     resTeamUsernameField.setText(selectedResponseTeamUser.getUsername());
                     resTeamPasswordField.setText(selectedResponseTeamUser.getPassword());
+                    resAssignTeamComboBox.setValue(selectedResponseTeamUser.getTeamId());
                 }
             }
         });
@@ -324,6 +329,8 @@ public class ResponseTeamDetailsController {
         searchFieldIncident();
         responseTeamInfoShowListData();
         searchFieldTeamInfo();
+        icdAssignTeamComboBox.setValue(resTeamIdInfo.getText());
+        resAssignTeamComboBox.setValue(resTeamIdInfo.getText());
     }
 
     public void icdResetBtnAction(){
@@ -367,8 +374,8 @@ public class ResponseTeamDetailsController {
         responseTeamInfoUpdateBtn.setFocusTraversable(false);
         responseTeamInfoDeleteBtn.setFocusTraversable(false);
         responseTeamInfoResetBtn.setFocusTraversable(false);
-
-        
+        resTeamIdInfo.setFocusTraversable(false);
+        resAssignTeamComboBox.setFocusTraversable(false);
         icdDescField.setFocusTraversable(false);
         icdSecLvlComboBox.setFocusTraversable(false);
         icdAffectedField.setFocusTraversable(false);
@@ -670,11 +677,12 @@ public class ResponseTeamDetailsController {
     }
 
     public void resTeamInfoAddBtnAction(){
-        String teamId = resTeamIdInfo.getText().trim();
+        String teamId = resAssignTeamComboBox.getValue();
         String resMemberName = resTeamMemberNameField.getText().trim();
         String resTeamContact = resTeamContactField.getText().trim();
         String resTeamUsername = resTeamUsernameField.getText().trim();
         String resTeamPassword = resTeamPasswordField.getText().trim();
+
         
 
         if(!resTeamCheckEmpty()){
@@ -726,7 +734,7 @@ public class ResponseTeamDetailsController {
 
     public void resTeamInfoUpdateBtnAction(){
         if(!resTeamCheckSelected()){
-            String teamId = resTeamIdInfo.getText().trim();
+            String teamId = resAssignTeamComboBox.getValue();
             String resTeamUserId = resTeamInfoTable.getSelectionModel().getSelectedItem().getMemberId();
             String resMemberName = resTeamMemberNameField.getText().trim();
             String resTeamContact = resTeamContactField.getText().trim();
